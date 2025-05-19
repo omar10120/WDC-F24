@@ -1,5 +1,14 @@
+﻿using WDC_F24.Application.Interfaces;
 using WDC_F24.infrastructure;
 using WDC_F24.infrastructure.Data;
+using WDC_F24.infrastructure.Repositories;
+using WDC_F24.Application;
+using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.OpenApi.Models;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,9 +19,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHttpContextAccessor();
+
+
+
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<IProductService, Productervice>();
 
-
+//builder.Services.AddSwaggerGen(option =>
+//{
+//    option.SwaggerDoc("UserApp", new OpenApiInfo { Title = "User App API", Version = "2.0" });
+//});
 
 
 var app = builder.Build();

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-
+using WDC_F24.Domain.Entities;
+using WDC_F24.Application.Interfaces;
 namespace WDC_F24.Controllers
 {
     [ApiController]

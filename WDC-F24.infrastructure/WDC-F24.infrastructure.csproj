@@ -16,4 +16,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WDC-F24.Application\WDC-F24.Application.csproj" />
+    <ProjectReference Include="..\WDC-F24.Domain\WDC-F24.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
