@@ -26,6 +26,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<IProductService, Productervice>();
 
+
 //builder.Services.AddSwaggerGen(option =>
 //{
 //    option.SwaggerDoc("UserApp", new OpenApiInfo { Title = "User App API", Version = "2.0" });
@@ -40,6 +41,11 @@ var app = builder.Build();
 //    app.UseSwagger();
 //    app.UseSwaggerUI();
 //}
+app.UseCors("AllowSpecificOrigins"); // تفعيل سياسة CORS
+app.UseAuthentication(); // Optional
+app.UseAuthorization();  // Optional
+
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
