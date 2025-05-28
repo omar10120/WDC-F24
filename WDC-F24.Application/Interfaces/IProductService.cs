@@ -14,6 +14,6 @@ namespace WDC_F24.Application.Interfaces
         Task<GeneralResponse> GetByIdAsync(Guid id);
         Task<GeneralResponse> DeleteAsync(Guid id);
         Task<GeneralResponse> AddAsync(AddProudctRequestDto product);
-        Task<GeneralResponse> UpdateAsync(AddProudctRequestDto product , Guid id);
+        Task<GeneralResponse> UpdateAsync(UpdateProductRequestDto product );
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WDC_F24.Application.DTOs.Requests
 {
-    public class AddProudctRequestDto 
+    public class UpdateProductRequestDto
     {
         [Required(ErrorMessage = " name is required.")]
         [MaxLength(256, ErrorMessage = " name cannot exceed 256 characters.")]
@@ -16,9 +16,8 @@ namespace WDC_F24.Application.DTOs.Requests
         [Required(ErrorMessage = " Price is required.")]
         public decimal Price { get; set; }
 
-
-
-
+        [Required(ErrorMessage = " Productid is required.")]
+        public Guid Productid { get; set; }
 
     }
 }

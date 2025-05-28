@@ -43,8 +43,9 @@ namespace WDC_F24.infrastructure.Repositories
                 {
                     _publisher.Publish("products-received", new
                     {
-                        product = product
-                    });
+                        product = product,
+                        Message = $"Products was received successfully"
+                    }); 
                 }
                 catch (Exception pubEx)
                 {
@@ -78,9 +79,10 @@ namespace WDC_F24.infrastructure.Repositories
 
                 try
                 {
-                    _publisher.Publish("products-received", new
+                    _publisher.Publish("product-received", new
                     {
-                        product = product
+                        product = product,
+                        Message = $"Product {product.Id} was received successfully"
                     });
                 }
                 catch (Exception pubEx)
@@ -120,7 +122,8 @@ namespace WDC_F24.infrastructure.Repositories
                     {
                         Id = product.Id,
                         Name = product.Name,
-                        Price = product.Price
+                        Price = product.Price,
+                        Message = $"Product {product.Id} was deleted successfully"
                     });
                 }
                 catch (Exception pubEx)
@@ -147,7 +150,7 @@ namespace WDC_F24.infrastructure.Repositories
                 var exsistProduct = await _context.Products.Where(x => x.Name == product.Name).FirstOrDefaultAsync();
                 if (exsistProduct != null)
                 {
-                    return GeneralResponse.BadRequest(product.Name + "already exist");
+                    return GeneralResponse.BadRequest(product.Name + " already exist");
                 }
                 var addProduct = new Product
                 {
@@ -165,7 +168,8 @@ namespace WDC_F24.infrastructure.Repositories
                     {
                         Id = addProduct.Id, 
                         Name = addProduct.Name,
-                        Price = addProduct.Price
+                        Price = addProduct.Price,
+                        Message = $"Product {addProduct.Id} was created successfully"
                     });
                 }
                 catch (Exception pubEx)
@@ -186,7 +190,7 @@ namespace WDC_F24.infrastructure.Repositories
 
         }
 
-        public async Task<GeneralResponse> UpdateAsync(AddProudctRequestDto product , Guid id)
+        public async Task<GeneralResponse> UpdateAsync(UpdateProductRequestDto product )
         {
             var ErrorMsg = "";
             try
@@ -199,7 +203,7 @@ namespace WDC_F24.infrastructure.Repositories
                     return GeneralResponse.BadRequest(product.Name + "already exist");
                 }
 
-                var GetProduct = await _context.Products.Where(x => x.Id ==id ).FirstOrDefaultAsync();
+                var GetProduct = await _context.Products.Where(x => x.Id == product.Productid).FirstOrDefaultAsync();
 
                 if (GetProduct == null)
                 {
@@ -218,7 +222,8 @@ namespace WDC_F24.infrastructure.Repositories
                     {
                         Id = GetProduct.Id,
                         Name = GetProduct.Name,
-                        Price = GetProduct.Price
+                        Price = GetProduct.Price,
+                        Message = $"Product {GetProduct.Id} was updated successfully"
                     });
                 }
                 catch (Exception pubEx)
